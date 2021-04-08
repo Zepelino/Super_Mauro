@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/sprites/dinossauro.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Entities/Dino.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 10, 12.25 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9, 3.25 )
+
+[node name="Dino" type="KinematicBody2D"]
+scale = Vector2( 4, 4 )
+z_index = 1
+collision_layer = 2
+collision_mask = 524288
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3.5 )
+shape = SubResource( 1 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0, 2.38419e-07 )
+scale = Vector2( 1, 1.6 )
+process_parent = true
+physics_process_parent = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+position = Vector2( 0, 16 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, -16 )
+flip_h = true
+
+[node name="RayCast2D" type="RayCast2D" parent="Node2D"]
+position = Vector2( 16, 0 )
+enabled = true
+cast_to = Vector2( 0, 18 )
+collision_mask = 524288
+
+[node name="Head" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+position = Vector2( 0, -12 )
+shape = SubResource( 2 )
+one_way_collision_margin = 0.0
+
+[node name="Die" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Body" type="Area2D" parent="."]
+position = Vector2( 0, 3.5 )
+collision_layer = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Body"]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="Head" to="." method="_on_Head_body_entered"]
+[connection signal="timeout" from="Die" to="." method="_on_Die_timeout"]
+[connection signal="body_entered" from="Body" to="." method="_on_Body_body_entered"]
+[connection signal="body_exited" from="Body" to="." method="_on_Body_body_exited"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform float tamanho_pixel : hint_range(0.0, 1.0) = 0.3;
+uniform float tamanho_multiplo : hint_range(1.0, 100) = 20.0;
+uniform float darkness : hint_range(0.0, 1.0) = 0.0;
+
+void fragment(){
+	vec2 scaledUV = (SCREEN_UV - vec2(0.5,0.0)) / vec2(1.0) + vec2(0.5,0.0);
+	vec2 posicao_pixel_requerido = (tamanho_pixel * tamanho_multiplo) * SCREEN_PIXEL_SIZE;
+	vec2 posicao_resultante = round(scaledUV / posicao_pixel_requerido) * posicao_pixel_requerido;
+	
+	vec4 pixel = texture(SCREEN_TEXTURE, posicao_resultante);
+	vec4 black = vec4(0, 0, 0, 1.0);
+	
+	COLOR = mix(pixel, black, darkness);
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/tamanho_pixel = 0.3
+shader_param/tamanho_multiplo = 1.0
+shader_param/darkness = 0.0
+
+[node name="Pixelate" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
+
+[node name="Pixelate" type="ColorRect" parent="."]
+material = SubResource( 6 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

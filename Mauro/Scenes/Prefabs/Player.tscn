@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/sprites/Mauro_1.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 12 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6, 5 )
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+z_index = 2
+collision_mask = 524288
+script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+position = Vector2( 0, 8 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, -12 )
+
+[node name="Normal" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Crounched" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3 )
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_bottom = 720
+smoothing_enabled = true
+
+[node name="Invencible" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="Invencible" to="." method="_on_Invencible_timeout"]

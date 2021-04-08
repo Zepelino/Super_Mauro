@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/Tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Images/Background_1.png" type="Texture" id=3]
+[ext_resource path="res://assets/Images/Background_2.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Scenes/Initial.gd" type="Script" id=5]
+[ext_resource path="res://assets/Fonts/comic-sans-ms-4.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/Images/Background_3.png" type="Texture" id=7]
+[ext_resource path="res://assets/Images/Arbusto.png" type="Texture" id=8]
+[ext_resource path="res://assets/Images/frutinha.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 54, 78 )
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+void fragment(){
+	COLOR = texture(TEXTURE, UV + vec2(1.0, 0) * TIME * 0.05);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 6 )
+
+[node name="Initial" type="Node"]
+pause_mode = 2
+script = ExtResource( 5 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 2148007936
+collision_mask = 2147483648
+format = 1
+tile_data = PoolIntArray( 65535, 4, 0, 40, 4, 0, 131071, 4, 0, 65576, 4, 0, 196607, 4, 0, 131112, 4, 0, 262143, 4, 0, 196648, 4, 0, 327679, 4, 0, 262184, 4, 0, 393215, 4, 0, 327720, 4, 0, 458751, 4, 0, 393256, 4, 0, 524287, 4, 0, 458792, 4, 0, 589823, 4, 0, 524328, 4, 0, 655359, 4, 0, 589864, 4, 0, 720895, 4, 0, 655400, 4, 0, 786431, 4, 0, 720936, 4, 0, 851967, 4, 0, 786472, 4, 0, 917503, 4, 0, 852008, 4, 0, 983039, 4, 0, 917544, 4, 0, 1048575, 4, 0, 983080, 4, 0, 1114111, 4, 0, 1048616, 4, 0, 1179647, 4, 0, 1114152, 4, 0, 1245183, 4, 0, 1179688, 4, 0, 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245187, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245194, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245204, 0, 0, 1245205, 0, 0, 1245206, 0, 0, 1245207, 0, 0, 1245208, 0, 0, 1245209, 0, 0, 1245210, 0, 0, 1245211, 0, 0, 1245212, 0, 0, 1245213, 0, 0, 1245214, 0, 0, 1245215, 0, 0, 1245216, 0, 0, 1245217, 0, 0, 1245218, 0, 0, 1245219, 0, 0, 1245220, 0, 0, 1245221, 0, 0, 1245222, 0, 0, 1245223, 0, 0, 1245224, 0, 0, 1310720, 1, 0, 1310721, 1, 0, 1310722, 1, 0, 1310723, 1, 0, 1310724, 1, 0, 1310725, 1, 0, 1310726, 1, 0, 1310727, 1, 0, 1310728, 1, 0, 1310729, 1, 0, 1310730, 1, 0, 1310731, 1, 0, 1310732, 1, 0, 1310733, 1, 0, 1310734, 1, 0, 1310735, 1, 0, 1310736, 1, 0, 1310737, 1, 0, 1310738, 1, 0, 1310739, 1, 0, 1310740, 1, 0, 1310741, 1, 0, 1310742, 1, 0, 1310743, 1, 0, 1310744, 1, 0, 1310745, 1, 0, 1310746, 1, 0, 1310747, 1, 0, 1310748, 1, 0, 1310749, 1, 0, 1310750, 1, 0, 1310751, 1, 0, 1310752, 1, 0, 1310753, 1, 0, 1310754, 1, 0, 1310755, 1, 0, 1310756, 1, 0, 1310757, 1, 0, 1310758, 1, 0, 1310759, 1, 0, 1310760, 1, 0, 1376256, 1, 0, 1376257, 1, 0, 1376258, 1, 0, 1376259, 1, 0, 1376260, 1, 0, 1376261, 1, 0, 1376262, 1, 0, 1376263, 1, 0, 1376264, 1, 0, 1376265, 1, 0, 1376266, 1, 0, 1376267, 1, 0, 1376268, 1, 0, 1376269, 1, 0, 1376270, 1, 0, 1376271, 1, 0, 1376272, 1, 0, 1376273, 1, 0, 1376274, 1, 0, 1376275, 1, 0, 1376276, 1, 0, 1376277, 1, 0, 1376278, 1, 0, 1376279, 1, 0, 1376280, 1, 0, 1376281, 1, 0, 1376282, 1, 0, 1376283, 1, 0, 1376284, 1, 0, 1376285, 1, 0, 1376286, 1, 0, 1376287, 1, 0, 1376288, 1, 0, 1376289, 1, 0, 1376290, 1, 0, 1376291, 1, 0, 1376292, 1, 0, 1376293, 1, 0, 1376294, 1, 0, 1376295, 1, 0, 1376296, 1, 0, 1441792, 1, 0, 1441793, 1, 0, 1441794, 1, 0, 1441795, 1, 0, 1441796, 1, 0, 1441797, 1, 0, 1441798, 1, 0, 1441799, 1, 0, 1441800, 1, 0, 1441801, 1, 0, 1441802, 1, 0, 1441803, 1, 0, 1441804, 1, 0, 1441805, 1, 0, 1441806, 1, 0, 1441807, 1, 0, 1441808, 1, 0, 1441809, 1, 0, 1441810, 1, 0, 1441811, 1, 0, 1441812, 1, 0, 1441813, 1, 0, 1441814, 1, 0, 1441815, 1, 0, 1441816, 1, 0, 1441817, 1, 0, 1441818, 1, 0, 1441819, 1, 0, 1441820, 1, 0, 1441821, 1, 0, 1441822, 1, 0, 1441823, 1, 0, 1441824, 1, 0, 1441825, 1, 0, 1441826, 1, 0, 1441827, 1, 0, 1441828, 1, 0, 1441829, 1, 0, 1441830, 1, 0, 1441831, 1, 0, 1441832, 1, 0 )
+
+[node name="Node2D" type="Node2D" parent="."]
+pause_mode = 1
+scale = Vector2( 4, 4 )
+
+[node name="Player" parent="Node2D" instance=ExtResource( 2 )]
+position = Vector2( 28, 144 )
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+position = Vector2( 266, 78 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+shape = SubResource( 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground"]
+scale = Vector2( 10, 10 )
+texture = ExtResource( 7 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.9, 1 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+material = SubResource( 3 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+scale = Vector2( 10, 10 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite4" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2( 10, 10 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="frutinha" type="Sprite" parent="ParallaxBackground/ParallaxLayer/Sprite4"]
+position = Vector2( 99.2, 52 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 9 )
+
+[node name="frutinha2" type="Sprite" parent="ParallaxBackground/ParallaxLayer/Sprite4"]
+position = Vector2( 108, 47.2 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 9 )
+
+[node name="frutinha4" type="Sprite" parent="ParallaxBackground/ParallaxLayer/Sprite4"]
+position = Vector2( 116, 56 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 9 )
+
+[node name="frutinha3" type="Sprite" parent="ParallaxBackground/ParallaxLayer/Sprite4"]
+position = Vector2( 31.2, 52 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 9 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -276.0
+margin_top = -136.0
+margin_right = 276.0
+margin_bottom = 136.0
+color = Color( 0, 0, 0, 0.894118 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "Olá, Mauro, Bem vindo ao Acre :D
+A princesa foi sequestrada de novo! Parece que o Jaré teve envolvimento com isso novamente!"
+visible_characters = 0
+text = "Olá, Mauro, Bem vindo ao Acre :D
+A princesa foi sequestrada de novo! Parece que o Jaré teve envolvimento com isso novamente!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="CanvasLayer/ColorRect"]
+wait_time = 0.05
+
+[node name="Limit" type="Position2D" parent="." groups=[
+"Limiter",
+]]
+position = Vector2( 1280, 0 )
+scale = Vector2( 1e-05, 1e-05 )
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="CanvasLayer/ColorRect/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+
+[editable path="Node2D/Player"]
